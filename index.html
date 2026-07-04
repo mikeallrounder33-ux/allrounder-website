@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allrounder — Full-Service Marketing Studio, Canada</title>
+<meta name="description" content="Allrounder is a full-service brand and growth studio in Canada. Web, e-commerce, SEO, social, content and events — handled by one team, end to end.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --paper: #f5f2ec;
+    --paper-2: #ede9e0;
+    --ink: #16150f;
+    --ink-soft: #4c4a42;
+    --line: #d8d3c7;
+    --accent: #d43d18;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4vw;
+    border-bottom: 1px solid transparent;
+    transition: background .35s ease, border-color .35s ease;
+  }
+  nav.scrolled { background: rgba(245,242,236,0.92); backdrop-filter: blur(8px); border-bottom-color: var(--line); }
+  .wordmark {
+    font-family: var(--serif); font-weight: 500; font-size: 1.25rem;
+    letter-spacing: -0.01em; text-decoration: none;
+  }
+  .wordmark sup { font-family: var(--mono); font-size: 0.55em; color: var(--accent); margin-left: 2px; }
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+  .nav-right a { text-decoration: none; font-size: 0.88rem; color: var(--ink-soft); transition: color .2s; }
+  .nav-right a:hover { color: var(--ink); }
+  .nav-right a.talk {
+    color: var(--ink); font-weight: 500;
+    border-bottom: 1.5px solid var(--accent); padding-bottom: 1px;
+  }
+  @media (max-width: 640px) { .nav-right a:not(.talk) { display: none; } }
+
+  /* ---------- Hero ---------- */
+  header {
+    min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 4vw 3rem;
+  }
+  .hero-meta {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    padding: 6.5rem 0 4vh;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.9rem, 9.5vw, 8.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    max-width: 13ch;
+  }
+  h1 em {
+    font-style: italic; font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-row {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 3rem; flex-wrap: wrap; margin-top: 5vh;
+    border-top: 1px solid var(--line); padding-top: 1.6rem;
+  }
+  .hero-sub {
+    max-width: 44ch; color: var(--ink-soft); font-size: 1.02rem;
+  }
+  .hero-cta {
+    font-family: var(--mono); font-size: 0.82rem; text-transform: uppercase;
+    letter-spacing: 0.08em; text-decoration: none; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 1.5rem; border: 1px solid var(--ink); border-radius: 2px;
+    transition: background .25s, color .25s;
+  }
+  .hero-cta:hover { background: var(--ink); color: var(--paper); }
+  .hero-cta .arr { transition: transform .25s; }
+  .hero-cta:hover .arr { transform: translateX(4px); }
+
+  /* fade-up on load */
+  .fade { opacity: 0; transform: translateY(24px); animation: fadeUp .9s cubic-bezier(.2,.65,.25,1) forwards; }
+  .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; } .d3 { animation-delay: .4s; } .d4 { animation-delay: .55s; }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+  /* ---------- Ticker ---------- */
+  .ticker {
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    overflow: hidden; white-space: nowrap; padding: 0.8rem 0;
+    background: var(--paper);
+  }
+  .ticker-track { display: inline-flex; animation: tick 30s linear infinite; }
+  .ticker span {
+    font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.1em; padding-right: 3.5rem;
+  }
+  .ticker .sep { color: var(--accent); }
+  @keyframes tick { to { transform: translateX(-50%); } }
+
+  /* ---------- Sections ---------- */
+  section { padding: 7rem 4vw; }
+  .sec-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--ink); padding-bottom: 1rem; margin-bottom: 3.5rem;
+  }
+  .sec-top h2 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    letter-spacing: -0.02em;
+  }
+  .sec-top .label { text-align: right; }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.2,.65,.25,1), transform .8s cubic-bezier(.2,.65,.25,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Services (numbered rows) ---------- */
+  .svc-row { border-bottom: 1px solid var(--line); }
+  .svc-head {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: grid; grid-template-columns: 3.5rem 1fr auto; align-items: center; gap: 1.5rem;
+    padding: 1.9rem 0; text-align: left; font-family: inherit; color: inherit;
+  }
+  .svc-head .no { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); }
+  .svc-head h3 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.4rem, 3.2vw, 2.3rem); letter-spacing: -0.02em;
+    transition: color .25s, transform .35s cubic-bezier(.2,.65,.25,1);
+  }
+  .svc-row:hover .svc-head h3 { color: var(--accent); transform: translateX(10px); }
+  .svc-head .plus {
+    font-family: var(--serif); font-size: 1.6rem; font-weight: 300; line-height: 1;
+    transition: transform .35s;
+  }
+  .svc-row.open .plus { transform: rotate(45deg); }
+  .svc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height .5s cubic-bezier(.2,.65,.25,1);
+  }
+  .svc-body-inner {
+    display: grid; grid-template-columns: 3.5rem 1fr; gap: 1.5rem;
+    padding: 0 0 2.2rem;
+  }
+  .svc-body-inner > div { max-width: 60ch; }
+  .svc-body p { color: var(--ink-soft); margin-bottom: 1rem; }
+  .svc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; }
+  .svc-tags span {
+    font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--ink);
+  }
+  .svc-tags span::before { content: '— '; color: var(--accent); }
+  @media (max-width: 640px) {
+    .svc-head { grid-template-columns: 2.2rem 1fr auto; gap: 0.8rem; }
+    .svc-body-inner { grid-template-columns: 1fr; padding-left: 0; }
+  }
+
+  /* ---------- Approach ---------- */
+  .approach { background: var(--ink); color: var(--paper); }
+  .approach .sec-top { border-bottom-color: rgba(245,242,236,0.35); }
+  .approach .label { color: rgba(245,242,236,0.6); }
+  .steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem;
+  }
+  @media (max-width: 960px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+  .step .no {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--accent);
+    display: block; border-top: 1px solid rgba(245,242,236,0.25); padding-top: 1rem;
+  }
+  .step h4 {
+    font-family: var(--serif); font-weight: 400; font-size: 1.35rem;
+    margin: 0.9rem 0 0.6rem; letter-spacing: -0.01em;
+  }
+  .step p { font-size: 0.92rem; color: rgba(245,242,236,0.65); }
+
+  /* ---------- Manifesto / About ---------- */
+  .about .big-quote {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(1.7rem, 4.2vw, 3.4rem); line-height: 1.18; letter-spacing: -0.02em;
+    max-width: 24ch; margin-bottom: 4rem;
+  }
+  .about .big-quote em { font-style: italic; color: var(--accent); }
+  .about-cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    border-top: 1px solid var(--line); padding-top: 2.5rem;
+  }
+  @media (max-width: 820px) { .about-cols { grid-template-columns: 1fr; gap: 2rem; } }
+  .about-cols p { color: var(--ink-soft); max-width: 52ch; margin-bottom: 1.2rem; }
+  .about-cols .sig {
+    font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--ink);
+  }
+  .facts { display: grid; gap: 0; }
+  .fact {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+  }
+  .fact:first-child { border-top: 1px solid var(--line); }
+  .fact .k { font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
+  .fact .v { font-family: var(--serif); font-size: 1.05rem; }
+
+  /* ---------- Contact ---------- */
+  .contact { padding-bottom: 4rem; }
+  .contact .kicker { margin-bottom: 2rem; }
+  .contact .kicker::after { content: ''; display: block; width: 3rem; height: 1px; background: var(--accent); margin-top: 0.8rem; }
+  .contact h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(2.4rem, 7vw, 6rem); line-height: 1.04; letter-spacing: -0.025em;
+    max-width: 15ch; margin-bottom: 3rem;
+  }
+  .contact h2 em { font-style: italic; color: var(--accent); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .contact-note { color: var(--ink-soft); font-size: 0.95rem; max-width: 46ch; }
+
+  .enquiry-form { display: grid; gap: 2rem; }
+  .field { display: grid; gap: 0.5rem; }
+  .field label {
+    font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--ink-soft);
+  }
+  .field input, .field textarea {
+    font-family: var(--serif); font-size: 1.25rem; font-weight: 300;
+    color: var(--ink); background: transparent;
+    border: none; border-bottom: 1px solid var(--line);
+    border-radius: 0; padding: 0.4rem 0 0.7rem;
+    transition: border-color .25s;
+  }
+  .field textarea { resize: vertical; min-height: 5.5rem; line-height: 1.5; }
+  .field input:focus, .field textarea:focus { outline: none; border-bottom-color: var(--accent); }
+  .field input::placeholder, .field textarea::placeholder { color: #b3ad9f; font-style: italic; }
+
+  .send-btn {
+    justify-self: start;
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.82rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--paper); background: var(--ink);
+    border: 1px solid var(--ink); border-radius: 2px;
+    padding: 1rem 1.8rem; cursor: pointer;
+    transition: background .25s, border-color .25s;
+  }
+  .send-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+  .send-btn:disabled { opacity: 0.55; cursor: wait; }
+  .form-status { font-size: 0.92rem; color: var(--ink-soft); min-height: 1.4em; }
+  .form-status.ok { color: #2c6e49; }
+  .form-status.err { color: var(--accent); }
+  .contact-alt { margin-top: 2rem; font-size: 0.85rem; color: var(--ink-soft); }
+  .contact-alt a { color: var(--ink); }
+  .contact-alt a:hover { color: var(--accent); }
+  .hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--ink);
+    padding: 2rem 4vw 2.5rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+  }
+  footer .col { display: flex; flex-direction: column; gap: 0.4rem; }
+  footer a { text-decoration: none; font-size: 0.86rem; color: var(--ink-soft); transition: color .2s; }
+  footer a:hover { color: var(--accent); }
+  footer .fm { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); }
+  footer .label { font-size: 0.68rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .fade, .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a class="wordmark" href="#top">Allrounder<sup>®</sup></a>
+    <div class="nav-right">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact" class="talk">Start a project</a>
+    </div>
+  </nav>
+
+  <header id="top">
+    <div class="hero-meta">
+      <span class="label fade d1">Full-service marketing studio</span>
+      <span class="label fade d1">Canada — <span id="localtime">—:—</span></span>
+    </div>
+    <h1 class="fade d2">The whole brand, <em>one</em> studio.</h1>
+    <div class="hero-row fade d3">
+      <p class="hero-sub">Web, e-commerce, search, social, content and events — planned and executed by one team that sees the full picture, so nothing gets lost between agencies.</p>
+      <a href="#contact" class="hero-cta">Start a project <span class="arr">→</span></a>
+    </div>
+  </header>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Web &amp; E-commerce <span class="sep">·</span></span>
+      <span>SEO &amp; Search <span class="sep">·</span></span>
+      <span>Social Media <span class="sep">·</span></span>
+      <span>Paid Campaigns <span class="sep">·</span></span>
+      <span>Content &amp; Production <span class="sep">·</span></span>
+      <span>Events &amp; Wholesale <span class="sep">·</span></span>
+      <span>Web &amp; E-commerce <span class="sep">·</span></span>
+      <span>SEO &amp; Search <span class="sep">·</span></span>
+      <span>Social Media <span class="sep">·</span></span>
+      <span>Paid Campaigns <span class="sep">·</span></span>
+      <span>Content &amp; Production <span class="sep">·</span></span>
+      <span>Events &amp; Wholesale <span class="sep">·</span></span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="sec-top reveal">
+      <h2>What we take off your plate</h2>
+      <span class="label">Services — six disciplines</span>
+    </div>
+
+    <div class="svc-row reveal">
+      <button class="svc-head" aria-expanded="false">
+        <span class="no">01</span>
+        <h3>Web &amp; E-commerce</h3>
+        <span class="plus">+</span>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <span></span>
+          <div>
+            <p>Stores and sites built to sell, not just to look good in a portfolio. Shopify builds, product pages and checkout flows designed around how your customers actually buy.</p>
+            <div class="svc-tags"><span>Shopify</span><span>Store setup</span><span>Landing pages</span><span>Conversion design</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row reveal">
+      <button class="svc-head" aria-expanded="false">
+        <span class="no">02</span>
+        <h3>SEO &amp; Search</h3>
+        <span class="plus">+</span>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <span></span>
+          <div>
+            <p>Get found by people already looking for what you sell. Keyword strategy, on-page work, Google Business setup and the technical fixes that actually move rankings.</p>
+            <div class="svc-tags"><span>Keyword strategy</span><span>On-page SEO</span><span>Google Business</span><span>Analytics</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row reveal">
+      <button class="svc-head" aria-expanded="false">
+        <span class="no">03</span>
+        <h3>Social Media</h3>
+        <span class="plus">+</span>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <span></span>
+          <div>
+            <p>A consistent, on-brand feed without you having to think about it. Content planning, design, captions and a posting rhythm that compounds over months, not days.</p>
+            <div class="svc-tags"><span>Content calendar</span><span>Design</span><span>Captions</span><span>Community</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row reveal">
+      <button class="svc-head" aria-expanded="false">
+        <span class="no">04</span>
+        <h3>Paid &amp; Digital Campaigns</h3>
+        <span class="plus">+</span>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <span></span>
+          <div>
+            <p>Budgets put to work with a clear line from spend to result. Paid ads, funnels and lead generation — reported honestly, adjusted quickly.</p>
+            <div class="svc-tags"><span>Paid ads</span><span>Funnels</span><span>Lead generation</span><span>Reporting</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row reveal">
+      <button class="svc-head" aria-expanded="false">
+        <span class="no">05</span>
+        <h3>Content &amp; Production</h3>
+        <span class="plus">+</span>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <span></span>
+          <div>
+            <p>Product shoots, short-form video and creative direction that make the brand look the way it deserves to — premium, consistent, recognisable.</p>
+            <div class="svc-tags"><span>Product shoots</span><span>Short-form video</span><span>Creative direction</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-row reveal">
+      <button class="svc-head" aria-expanded="false">
+        <span class="no">06</span>
+        <h3>Events &amp; Wholesale</h3>
+        <span class="plus">+</span>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <span></span>
+          <div>
+            <p>Launches, activations and wholesale positioning handled end to end — promotion, logistics and follow-through that get your brand into the right rooms.</p>
+            <div class="svc-tags"><span>Event handling</span><span>Promotion</span><span>Wholesale strategy</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="approach" id="approach">
+    <div class="sec-top reveal">
+      <h2>How a project runs</h2>
+      <span class="label">Approach — four stages</span>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="no">Stage 01</span><h4>Listen</h4><p>Your goals, your market, your customers. We start from your business — never from a template.</p></div>
+      <div class="step reveal"><span class="no">Stage 02</span><h4>Plan</h4><p>A focused roadmap in plain language: what we'll do, in what order, and what it should return.</p></div>
+      <div class="step reveal"><span class="no">Stage 03</span><h4>Build</h4><p>Design, content and setup executed properly and on schedule. You see progress, not black boxes.</p></div>
+      <div class="step reveal"><span class="no">Stage 04</span><h4>Grow</h4><p>We measure what works, cut what doesn't, and keep pushing the numbers in the right direction.</p></div>
+    </div>
+  </section>
+
+  <!-- STUDIO -->
+  <section class="about" id="studio">
+    <p class="big-quote reveal">We don't sell marketing. We build the systems that make a business <em>grow</em> — and stand behind every result.</p>
+    <div class="about-cols">
+      <div class="reveal">
+        <p>Allrounder started with a simple observation: growing businesses shouldn't have to juggle five agencies. The store, the search rankings, the social feed and the launch event are all one story — and they work best when one team tells it.</p>
+        <p>Every project here is handled personally. That means honest advice, direct communication, and work judged by a single measure: whether it moved your business forward.</p>
+        <p class="sig">— Mike, Founder</p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><span class="k">Studio</span><span class="v">Allrounder Marketing</span></div>
+        <div class="fact"><span class="k">Base</span><span class="v">Canada</span></div>
+        <div class="fact"><span class="k">Model</span><span class="v">Full-service, one team</span></div>
+        <div class="fact"><span class="k">Contact</span><span class="v">Direct with the founder</span></div>
+        <div class="fact"><span class="k">Reply time</span><span class="v">Within one business day</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <p class="label kicker reveal">New business — replies within a day</p>
+    <h2 class="reveal">Tell us where the brand <em>should</em> be.</h2>
+    <div class="contact-grid reveal">
+      <div>
+        <p class="contact-note">A few lines about your business and where you want it to go is plenty. Your message lands directly in the founder's inbox — you'll get honest, useful next steps within a day. No pressure, no filler.</p>
+        <p class="contact-alt">Prefer your own email app? <a href="mailto:mikeallrounder33@gmail.com?subject=Project%20Enquiry%20—%20Allrounder">Write to us directly →</a></p>
+      </div>
+      <form class="enquiry-form" id="enquiryForm" action="https://formsubmit.co/mikeallrounder33@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New enquiry — Allrounder website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" type="text" name="name" placeholder="Jane Doe" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-email">Your email</label>
+          <input id="f-email" type="email" name="email" placeholder="jane@company.com" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="f-msg">About the project</label>
+          <textarea id="f-msg" name="message" placeholder="What you do, and where you want the brand to go…" required></textarea>
+        </div>
+        <button class="send-btn" id="sendBtn" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="col">
+      <span class="fm">Allrounder<sup style="font-family:var(--mono);font-size:0.5em;color:var(--accent);">®</sup></span>
+      <span class="label">Full-service marketing studio — Canada</span>
+    </div>
+    <div class="col">
+      <a href="#" rel="noopener">Instagram</a>
+      <a href="#" rel="noopener">Facebook</a>
+      <a href="#" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="col">
+      <a href="mailto:mikeallrounder33@gmail.com">mikeallrounder33@gmail.com</a>
+      <span class="label">© 2026 Allrounder Marketing</span>
+    </div>
+  </footer>
+
+<script>
+  // sticky nav
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30), { passive: true });
+
+  // local time (human detail in the hero)
+  const lt = document.getElementById('localtime');
+  const tick = () => {
+    lt.textContent = new Intl.DateTimeFormat('en-CA', {
+      hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Toronto'
+    }).format(new Date()) + ' ET';
+  };
+  tick(); setInterval(tick, 30000);
+
+  // scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // service accordions
+  document.querySelectorAll('.svc-row').forEach(row => {
+    const head = row.querySelector('.svc-head');
+    const body = row.querySelector('.svc-body');
+    head.addEventListener('click', () => {
+      const open = row.classList.toggle('open');
+      head.setAttribute('aria-expanded', open);
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+    });
+  });
+
+  // enquiry form — submits in place via FormSubmit, no email client needed
+  const form = document.getElementById('enquiryForm');
+  const sendBtn = document.getElementById('sendBtn');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.querySelector('.hp').value) return; // honeypot tripped
+    sendBtn.disabled = true;
+    status.className = 'form-status';
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/mikeallrounder33@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (!res.ok) throw new Error('Request failed');
+      form.reset();
+      status.className = 'form-status ok';
+      status.textContent = 'Sent — thank you. You’ll hear back within a day.';
+    } catch (err) {
+      status.className = 'form-status err';
+      status.textContent = 'Something went wrong. Please try again, or email mikeallrounder33@gmail.com directly.';
+    }
+    sendBtn.disabled = false;
+  });
+</script>
+</body>
+</html>
