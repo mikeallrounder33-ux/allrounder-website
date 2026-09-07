@@ -172,8 +172,10 @@ SHELL = """<!DOCTYPE html>
 </html>
 """
 
-# Set this to the real domain before publishing so canonical/OG URLs resolve.
-ORIGIN = "https://allroundermarketing.ca"
+# Where the site is actually served from. Canonical URLs, Open Graph tags and
+# the sitemap are all built from this — point it at the real domain the moment
+# one is live, then rebuild, or search engines index the wrong host.
+ORIGIN = "https://mikeallrounder33-ux.github.io/allrounder-website"
 
 
 def build():
@@ -193,7 +195,7 @@ def build():
             SHELL.format(
                 title=meta["title"],
                 description=meta["description"],
-                canonical=f"{ORIGIN}/{rel.as_posix()}",
+                canonical=ORIGIN + "/" + ("" if rel.as_posix() == "index.html" else rel.as_posix()),
                 origin=ORIGIN,
                 site_name=SITE_NAME,
                 base=base,
@@ -207,7 +209,7 @@ def build():
 
     # sitemap covers the indexable pages only
     urls = "\n".join(
-        f"  <url><loc>{ORIGIN}/{p}</loc></url>"
+        "  <url><loc>%s/%s</loc></url>" % (ORIGIN, "" if p == "index.html" else p)
         for p in written
         if p != "404.html"
     )

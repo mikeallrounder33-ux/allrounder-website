@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /site/
 
-Sitemap: https://allroundermarketing.ca/sitemap.xml
+Sitemap: https://mikeallrounder33-ux.github.io/allrounder-website/sitemap.xml
