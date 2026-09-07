@@ -217,7 +217,10 @@ def build():
         f"{urls}\n</urlset>\n"
     )
     (ROOT / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n"
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /site/\n"   # unwrapped source fragments, not real pages
+        f"\nSitemap: {ORIGIN}/sitemap.xml\n"
     )
 
     print(f"built {len(written)} pages + sitemap.xml + robots.txt")
