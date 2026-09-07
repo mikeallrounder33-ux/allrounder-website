@@ -3,589 +3,1046 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Allrounder — Full-Service Marketing Studio, Canada</title>
-<meta name="description" content="Allrounder is a full-service brand and growth studio in Canada. Web, e-commerce, SEO, social, content and events — handled by one team, end to end.">
+<title>Allrounder Marketing — Consulting &amp; Campaign Planning</title>
+<meta name="description" content="Allrounder Marketing is a consulting studio in Canada. We build brand strategy, campaign plans and growth systems for product businesses — strategy, growth, results.">
+<meta name="theme-color" content="#0b0908">
+<link rel="icon" href="assets/allrounder-mark.jpg">
+<meta property="og:title" content="Allrounder Marketing — Consulting &amp; Campaign Planning">
+<meta property="og:description" content="Strategy, growth, results. Marketing consulting and full campaign planning for product businesses.">
+<meta property="og:image" content="assets/allrounder-logo.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+/* ============================================================
+   ALLROUNDER MARKETING — design tokens
+   Poster-editorial layout on a warm near-black ground,
+   with the brand gold carrying every accent.
+   ============================================================ */
+:root{
+  --void:#0b0908;
+  --wine:#150e0d;
+  --card:#1c1312;
+  --card-2:#241715;
+  --ember:#2d1410;
+  --gold:#c9a24d;
+  --gold-lit:#e8caa0;
+  --gold-deep:#8a6a2c;
+  --cream:#ece2d1;
+  --dim:#a1968a;
+  --line:rgba(201,162,77,.20);
+  --line-soft:rgba(201,162,77,.11);
+  --display:'Anton',Impact,sans-serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --pad:clamp(1.1rem,4vw,3.4rem);
+  --r:14px;
+}
 
-  :root {
-    --paper: #f5f2ec;
-    --paper-2: #ede9e0;
-    --ink: #16150f;
-    --ink-soft: #4c4a42;
-    --line: #d8d3c7;
-    --accent: #d43d18;
-    --serif: 'Fraunces', Georgia, serif;
-    --sans: 'Inter', -apple-system, sans-serif;
-    --mono: 'Space Mono', monospace;
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--void);
+  color:var(--cream);
+  line-height:1.62;
+  font-size:16px;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:#120c0b}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+/* page-wide warm vignette, echoing the poster's lit centre */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(115% 60% at 50% -8%, rgba(139,44,26,.30), transparent 62%),
+    radial-gradient(80% 45% at 88% 12%, rgba(201,162,77,.07), transparent 70%);
+}
+.shell{position:relative;z-index:1}
 
-  body {
-    font-family: var(--sans);
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.6;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-  }
+/* ---------- shared type ---------- */
+.kicker{
+  font-family:var(--cond);font-weight:500;font-size:.82rem;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+}
+.eyebrow{
+  font-family:var(--cond);font-weight:400;font-size:.76rem;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+}
+.sec-head{
+  font-family:var(--cond);font-weight:600;
+  font-size:clamp(1.5rem,3vw,2.15rem);
+  letter-spacing:.13em;text-transform:uppercase;line-height:1.05;
+}
+.rule{width:44px;height:2px;background:var(--gold);margin-top:.75rem;border-radius:2px}
+.muted{color:var(--dim)}
+p.lede{font-size:1.02rem;color:#cbc0b1;max-width:56ch}
 
-  ::selection { background: var(--accent); color: var(--paper); }
+/* ---------- panels ---------- */
+.panel{
+  background:linear-gradient(168deg,var(--card) 0%,var(--wine) 100%);
+  border:1px solid var(--line-soft);
+  border-radius:var(--r);
+}
 
-  .label {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding:.85rem var(--pad);
+  border-bottom:1px solid transparent;
+  transition:background .35s ease,border-color .35s ease,backdrop-filter .35s;
+}
+nav.scrolled{
+  background:rgba(11,9,8,.86);
+  backdrop-filter:blur(12px) saturate(140%);
+  border-bottom-color:var(--line-soft);
+}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand img{
+  width:34px;height:34px;border-radius:8px;object-fit:cover;
+  filter:url(#knockout) contrast(1.06);border-radius:0;
+}
+.brand .wm{
+  font-weight:300;font-size:.95rem;letter-spacing:.24em;
+  text-transform:uppercase;line-height:1;
+}
+.brand .wm span{display:block;font-family:var(--cond);font-size:.62rem;
+  letter-spacing:.34em;color:var(--gold);margin-top:.28rem}
+.nav-links{display:flex;align-items:center;gap:1.9rem}
+.nav-links a{
+  font-family:var(--cond);font-size:.95rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);transition:color .2s;
+}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{
+  font-family:var(--cond);font-size:.9rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.55rem 1.15rem;border:1px solid var(--gold);border-radius:999px;
+  color:var(--gold);transition:background .25s,color .25s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--gold);color:#120c0b}
+.menu-btn{
+  display:none;background:none;border:1px solid var(--line);border-radius:8px;
+  width:40px;height:36px;cursor:pointer;color:var(--cream);padding:0;
+  align-items:center;justify-content:center;
+}
+.menu-btn span{display:block;width:17px;height:1.5px;background:currentColor;position:relative;transition:transform .3s,background .2s}
+.menu-btn span::before,.menu-btn span::after{
+  content:'';position:absolute;left:0;width:17px;height:1.5px;background:currentColor;transition:transform .3s,top .3s;
+}
+.menu-btn span::before{top:-5.5px}
+.menu-btn span::after{top:5.5px}
+.menu-btn[aria-expanded="true"] span{background:transparent}
+.menu-btn[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;z-index:79;
+  background:rgba(11,9,8,.97);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-soft);
+  padding:4.6rem var(--pad) 1.6rem;
+  transform:translateY(-100%);transition:transform .38s cubic-bezier(.3,.8,.3,1);
+}
+.mobile-menu.open{transform:none}
+.mobile-menu a{
+  display:block;font-family:var(--cond);font-size:1.32rem;letter-spacing:.14em;
+  text-transform:uppercase;padding:.62rem 0;border-bottom:1px solid var(--line-soft);color:var(--cream);
+}
+.mobile-menu a:last-child{border-bottom:0}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .mobile-menu{display:block}
+  .nav-cta{display:none}
+}
 
-  a { color: inherit; }
+/* ============================================================
+   HERO — the poster
+   ============================================================ */
+.hero{padding:6.2rem var(--pad) 0;position:relative}
+.hero-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:1rem;flex-wrap:wrap;
+  padding-bottom:1rem;
+}
+.mega{
+  font-family:var(--display);
+  font-size:clamp(3.6rem,16.2vw,15rem);
+  line-height:.82;letter-spacing:-.012em;
+  text-transform:uppercase;color:var(--cream);
+  position:relative;z-index:2;
+  text-align:center;
+  white-space:nowrap;
+}
+.stage{position:relative;margin-top:-.06em}
+.spot{
+  position:absolute;left:50%;top:-1%;transform:translateX(-50%);
+  width:min(34vw,360px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 50% 45%,#8c2a1c 0%,#5d1c14 45%,rgba(45,20,16,0) 72%);
+  z-index:1;filter:blur(.4px);
+}
+.mark-wrap{
+  position:relative;z-index:3;display:flex;justify-content:center;
+  margin-top:min(-4vw,-1.6rem);
+}
+.mark-wrap img{
+  width:min(42vw,430px);
+  filter:url(#knockout) drop-shadow(0 14px 40px rgba(0,0,0,.55));
+}
+/* rotating badge, as in the reference's circular seal */
+.seal{
+  position:absolute;right:2vw;top:6%;width:clamp(88px,10vw,132px);z-index:4;
+  animation:spin 26s linear infinite;
+}
+.seal text{
+  font-family:var(--cond);font-size:9.4px;letter-spacing:.22em;
+  fill:var(--gold);text-transform:uppercase;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.seal{animation:none}}
 
-  /* ---------- Nav ---------- */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 4vw;
-    border-bottom: 1px solid transparent;
-    transition: background .35s ease, border-color .35s ease;
-  }
-  nav.scrolled { background: rgba(245,242,236,0.92); backdrop-filter: blur(8px); border-bottom-color: var(--line); }
-  .wordmark {
-    font-family: var(--serif); font-weight: 500; font-size: 1.25rem;
-    letter-spacing: -0.01em; text-decoration: none;
-  }
-  .wordmark sup { font-family: var(--mono); font-size: 0.55em; color: var(--accent); margin-left: 2px; }
-  .nav-right { display: flex; align-items: center; gap: 2rem; }
-  .nav-right a { text-decoration: none; font-size: 0.88rem; color: var(--ink-soft); transition: color .2s; }
-  .nav-right a:hover { color: var(--ink); }
-  .nav-right a.talk {
-    color: var(--ink); font-weight: 500;
-    border-bottom: 1.5px solid var(--accent); padding-bottom: 1px;
-  }
-  @media (max-width: 640px) { .nav-right a:not(.talk) { display: none; } }
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);
+  gap:clamp(1.5rem,5vw,4.5rem);align-items:start;
+  margin-top:clamp(-3.5rem,-2vw,-.5rem);position:relative;z-index:5;
+  padding-bottom:3.2rem;
+}
+.pillars-stack h2{
+  font-family:var(--cond);font-weight:600;
+  font-size:clamp(1.6rem,3.6vw,2.6rem);
+  letter-spacing:.07em;text-transform:uppercase;line-height:1.06;
+}
+.pillars-stack .sub{
+  font-family:var(--cond);font-size:.95rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);margin-top:.9rem;line-height:2;
+}
+.quote{margin-top:2.2rem;max-width:34ch;position:relative;padding-top:1.9rem}
+.quote::before{
+  content:'\201C';position:absolute;top:.34em;left:-.02em;
+  font-family:Georgia,serif;font-size:3.1rem;color:var(--gold);opacity:.6;line-height:0;
+}
+.quote p{
+  font-family:var(--cond);font-size:clamp(1.02rem,1.5vw,1.24rem);
+  letter-spacing:.11em;text-transform:uppercase;line-height:1.45;
+}
+.sig{
+  font-family:Georgia,serif;font-style:italic;font-size:1.5rem;
+  color:var(--gold-lit);margin-top:1rem;opacity:.85;
+}
+.hero-name{
+  font-family:var(--cond);font-weight:600;
+  font-size:clamp(2.3rem,5.6vw,4.1rem);
+  line-height:.98;letter-spacing:.03em;text-transform:uppercase;
+}
+.hero-role{
+  font-family:var(--cond);font-size:1rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold);margin-top:.55rem;
+}
+.hero-copy{margin-top:1.3rem;max-width:48ch;color:#c8bcac;font-size:.99rem}
+.hr-gold{height:1px;background:var(--line);border:0;margin:1.8rem 0}
+.pillar-row{display:flex;gap:clamp(1.4rem,4vw,3.2rem);flex-wrap:wrap}
+.pillar{display:flex;flex-direction:column;gap:.5rem;min-width:120px;flex:1 1 130px}
+.pillar .ic{
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--gold);
+  background:rgba(201,162,77,.05);
+}
+.pillar b{font-family:var(--cond);font-size:1.6rem;font-weight:600;letter-spacing:.06em;line-height:1}
+.pillar span{font-family:var(--cond);font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);max-width:20ch;line-height:1.5}
 
-  /* ---------- Hero ---------- */
-  header {
-    min-height: 100svh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 4vw 3rem;
-  }
-  .hero-meta {
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-    padding: 6.5rem 0 4vh;
-  }
-  h1 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(2.9rem, 9.5vw, 8.2rem);
-    line-height: 1.02;
-    letter-spacing: -0.025em;
-    max-width: 13ch;
-  }
-  h1 em {
-    font-style: italic; font-weight: 300;
-    color: var(--accent);
-  }
-  .hero-row {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    gap: 3rem; flex-wrap: wrap; margin-top: 5vh;
-    border-top: 1px solid var(--line); padding-top: 1.6rem;
-  }
-  .hero-sub {
-    max-width: 44ch; color: var(--ink-soft); font-size: 1.02rem;
-  }
-  .hero-cta {
-    font-family: var(--mono); font-size: 0.82rem; text-transform: uppercase;
-    letter-spacing: 0.08em; text-decoration: none; white-space: nowrap;
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    padding: 0.9rem 1.5rem; border: 1px solid var(--ink); border-radius: 2px;
-    transition: background .25s, color .25s;
-  }
-  .hero-cta:hover { background: var(--ink); color: var(--paper); }
-  .hero-cta .arr { transition: transform .25s; }
-  .hero-cta:hover .arr { transform: translateX(4px); }
+@media(max-width:860px){
+  .hero{padding-top:5.2rem}
+  .mega{font-size:17.5vw}
+  .mark-wrap{margin-top:-1rem}
+  .mark-wrap img{width:74vw}
+  .spot{width:70vw;top:2%}
+  .hero-grid{grid-template-columns:1fr;margin-top:1.6rem;gap:2.4rem}
+  .seal{right:-1vw;top:-7%;width:74px;opacity:.75}
+}
 
-  /* fade-up on load */
-  .fade { opacity: 0; transform: translateY(24px); animation: fadeUp .9s cubic-bezier(.2,.65,.25,1) forwards; }
-  .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; } .d3 { animation-delay: .4s; } .d4 { animation-delay: .55s; }
-  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker{
+  border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+  background:linear-gradient(90deg,rgba(45,20,16,.55),rgba(28,19,18,.25));
+  overflow:hidden;white-space:nowrap;padding:.85rem 0;
+}
+.ticker-track{display:inline-flex;gap:2.6rem;animation:slide 42s linear infinite;padding-right:2.6rem}
+.ticker span{
+  font-family:var(--cond);font-size:1rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--dim);
+}
+.ticker span i{color:var(--gold);font-style:normal;margin-right:2.6rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
 
-  /* ---------- Ticker ---------- */
-  .ticker {
-    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
-    overflow: hidden; white-space: nowrap; padding: 0.8rem 0;
-    background: var(--paper);
-  }
-  .ticker-track { display: inline-flex; animation: tick 30s linear infinite; }
-  .ticker span {
-    font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase;
-    letter-spacing: 0.1em; padding-right: 3.5rem;
-  }
-  .ticker .sep { color: var(--accent); }
-  @keyframes tick { to { transform: translateX(-50%); } }
+/* ============================================================
+   SECTION FRAME
+   ============================================================ */
+section{padding:clamp(3.2rem,7vw,6rem) var(--pad)}
+.sec-top{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem 3rem;flex-wrap:wrap;margin-bottom:2.4rem}
+.sec-top .lede{flex:1 1 300px;max-width:52ch}
 
-  /* ---------- Sections ---------- */
-  section { padding: 7rem 4vw; }
-  .sec-top {
-    display: flex; justify-content: space-between; align-items: baseline;
-    border-bottom: 1px solid var(--ink); padding-bottom: 1rem; margin-bottom: 3.5rem;
-  }
-  .sec-top h2 {
-    font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 3.4vw, 2.6rem);
-    letter-spacing: -0.02em;
-  }
-  .sec-top .label { text-align: right; }
+/* ---------- WHAT WE DO : 5 cards ---------- */
+.svc-grid{
+  display:grid;gap:1rem;
+  grid-template-columns:repeat(5,1fr);
+}
+.svc{
+  padding:1.5rem 1.3rem;border-radius:var(--r);
+  background:linear-gradient(170deg,var(--card-2),var(--wine));
+  border:1px solid var(--line-soft);
+  transition:transform .35s cubic-bezier(.2,.7,.3,1),border-color .35s,box-shadow .35s;
+}
+.svc:hover{transform:translateY(-6px);border-color:var(--line);box-shadow:0 18px 40px -22px rgba(0,0,0,.9)}
+.svc .ic{
+  width:46px;height:46px;border-radius:10px;display:grid;place-items:center;
+  border:1px solid var(--line);color:var(--gold);
+  background:rgba(201,162,77,.06);margin-bottom:1.1rem;
+}
+.svc h3{
+  font-family:var(--cond);font-weight:600;font-size:1.14rem;
+  letter-spacing:.12em;text-transform:uppercase;line-height:1.15;
+}
+.svc p{font-size:.87rem;color:var(--dim);margin-top:.6rem;line-height:1.6}
+@media(max-width:1080px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.svc-grid{grid-template-columns:1fr}}
 
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.2,.65,.25,1), transform .8s cubic-bezier(.2,.65,.25,1); }
-  .reveal.in { opacity: 1; transform: none; }
+/* ---------- PROCESS + BLUEPRINTS band ---------- */
+.band{
+  display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.55fr);
+  gap:1rem;
+}
+.block{padding:clamp(1.4rem,2.4vw,2rem);border-radius:var(--r);
+  background:linear-gradient(168deg,var(--card) 0%,var(--wine) 100%);
+  border:1px solid var(--line-soft);
+}
+.steps{margin-top:1.9rem;display:flex;flex-direction:column;gap:1.35rem}
+.step{display:grid;grid-template-columns:auto auto 1fr;gap:.95rem;align-items:start}
+.step .no{
+  font-family:var(--display);font-size:1.5rem;color:var(--gold);
+  line-height:1;opacity:.9;min-width:1.9ch;
+}
+.step .ic{
+  width:38px;height:38px;border-radius:9px;display:grid;place-items:center;
+  border:1px solid var(--line);color:var(--gold);background:rgba(201,162,77,.05);
+}
+.step h4{font-family:var(--cond);font-weight:600;font-size:1.02rem;letter-spacing:.14em;text-transform:uppercase}
+.step p{font-size:.84rem;color:var(--dim);margin-top:.22rem;line-height:1.55}
 
-  /* ---------- Services (numbered rows) ---------- */
-  .svc-row { border-bottom: 1px solid var(--line); }
-  .svc-head {
-    width: 100%; background: none; border: none; cursor: pointer;
-    display: grid; grid-template-columns: 3.5rem 1fr auto; align-items: center; gap: 1.5rem;
-    padding: 1.9rem 0; text-align: left; font-family: inherit; color: inherit;
-  }
-  .svc-head .no { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); }
-  .svc-head h3 {
-    font-family: var(--serif); font-weight: 400;
-    font-size: clamp(1.4rem, 3.2vw, 2.3rem); letter-spacing: -0.02em;
-    transition: color .25s, transform .35s cubic-bezier(.2,.65,.25,1);
-  }
-  .svc-row:hover .svc-head h3 { color: var(--accent); transform: translateX(10px); }
-  .svc-head .plus {
-    font-family: var(--serif); font-size: 1.6rem; font-weight: 300; line-height: 1;
-    transition: transform .35s;
-  }
-  .svc-row.open .plus { transform: rotate(45deg); }
-  .svc-body {
-    max-height: 0; overflow: hidden;
-    transition: max-height .5s cubic-bezier(.2,.65,.25,1);
-  }
-  .svc-body-inner {
-    display: grid; grid-template-columns: 3.5rem 1fr; gap: 1.5rem;
-    padding: 0 0 2.2rem;
-  }
-  .svc-body-inner > div { max-width: 60ch; }
-  .svc-body p { color: var(--ink-soft); margin-bottom: 1rem; }
-  .svc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; }
-  .svc-tags span {
-    font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase;
-    letter-spacing: 0.06em; color: var(--ink);
-  }
-  .svc-tags span::before { content: '— '; color: var(--accent); }
-  @media (max-width: 640px) {
-    .svc-head { grid-template-columns: 2.2rem 1fr auto; gap: 0.8rem; }
-    .svc-body-inner { grid-template-columns: 1fr; padding-left: 0; }
-  }
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.9rem}
+.work{
+  border-radius:12px;overflow:hidden;border:1px solid var(--line-soft);
+  background:var(--card-2);transition:transform .35s cubic-bezier(.2,.7,.3,1),border-color .35s;
+}
+.work:hover{transform:translateY(-5px);border-color:var(--line)}
+.work .art{aspect-ratio:16/10;position:relative;overflow:hidden;background:#120c0b}
+.work .art svg{position:absolute;inset:0;width:100%;height:100%}
+.work .meta{padding:.85rem 1rem 1.05rem}
+.work .meta h4{font-family:var(--cond);font-weight:600;font-size:1rem;letter-spacing:.13em;text-transform:uppercase}
+.work .meta span{font-family:var(--cond);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-top:.2rem}
+.work .meta p{font-size:.82rem;color:var(--dim);margin-top:.5rem;line-height:1.55}
+@media(max-width:960px){.band{grid-template-columns:1fr}}
+@media(max-width:560px){.work-grid{grid-template-columns:1fr}}
 
-  /* ---------- Approach ---------- */
-  .approach { background: var(--ink); color: var(--paper); }
-  .approach .sec-top { border-bottom-color: rgba(245,242,236,0.35); }
-  .approach .label { color: rgba(245,242,236,0.6); }
-  .steps {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem;
-  }
-  @media (max-width: 960px) { .steps { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
-  .step .no {
-    font-family: var(--mono); font-size: 0.78rem; color: var(--accent);
-    display: block; border-top: 1px solid rgba(245,242,236,0.25); padding-top: 1rem;
-  }
-  .step h4 {
-    font-family: var(--serif); font-weight: 400; font-size: 1.35rem;
-    margin: 0.9rem 0 0.6rem; letter-spacing: -0.01em;
-  }
-  .step p { font-size: 0.92rem; color: rgba(245,242,236,0.65); }
+/* ---------- ENGAGEMENTS ---------- */
+.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.eng{
+  padding:1.7rem 1.5rem;border-radius:var(--r);position:relative;
+  background:linear-gradient(170deg,var(--card-2),var(--wine));
+  border:1px solid var(--line-soft);display:flex;flex-direction:column;
+}
+.eng.feature{
+  border-color:var(--line);
+  background:linear-gradient(170deg,var(--ember),var(--card));
+}
+.eng .tag{
+  position:absolute;top:1.2rem;right:1.2rem;font-family:var(--cond);
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#120c0b;background:var(--gold);padding:.18rem .55rem;border-radius:999px;
+}
+.eng h3{font-family:var(--cond);font-weight:600;font-size:1.3rem;letter-spacing:.12em;text-transform:uppercase}
+.eng .for{font-family:var(--cond);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:.35rem}
+.eng > p{font-size:.88rem;color:var(--dim);margin-top:.9rem}
+.eng ul{list-style:none;margin-top:1.15rem;display:flex;flex-direction:column;gap:.55rem;flex:1}
+.eng li{font-size:.86rem;color:#c3b8a9;padding-left:1.3rem;position:relative;line-height:1.5}
+.eng li::before{
+  content:'';position:absolute;left:0;top:.55em;width:7px;height:7px;
+  border-radius:50%;border:1.5px solid var(--gold);
+}
+.eng .go{
+  margin-top:1.4rem;font-family:var(--cond);font-size:.85rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.45rem;
+}
+.eng .go:hover span{transform:translateX(4px)}
+.eng .go span{transition:transform .25s}
+@media(max-width:900px){.eng-grid{grid-template-columns:1fr}}
 
-  /* ---------- Manifesto / About ---------- */
-  .about .big-quote {
-    font-family: var(--serif); font-weight: 300;
-    font-size: clamp(1.7rem, 4.2vw, 3.4rem); line-height: 1.18; letter-spacing: -0.02em;
-    max-width: 24ch; margin-bottom: 4rem;
-  }
-  .about .big-quote em { font-style: italic; color: var(--accent); }
-  .about-cols {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    border-top: 1px solid var(--line); padding-top: 2.5rem;
-  }
-  @media (max-width: 820px) { .about-cols { grid-template-columns: 1fr; gap: 2rem; } }
-  .about-cols p { color: var(--ink-soft); max-width: 52ch; margin-bottom: 1.2rem; }
-  .about-cols .sig {
-    font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--ink);
-  }
-  .facts { display: grid; gap: 0; }
-  .fact {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 1.1rem 0; border-bottom: 1px solid var(--line);
-  }
-  .fact:first-child { border-top: 1px solid var(--line); }
-  .fact .k { font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
-  .fact .v { font-family: var(--serif); font-size: 1.05rem; }
+/* ---------- ABOUT / STACK / QUOTE ---------- */
+.about-band{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1rem}
+.about-inner{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;margin-top:1.7rem}
+.portrait{
+  width:clamp(120px,14vw,172px);aspect-ratio:1;border-radius:10px;
+  border:1px solid var(--line);overflow:hidden;
+  background:radial-gradient(circle at 50% 30%,#6d2418,#1a0f0d 72%);
+  display:grid;place-items:center;padding:.7rem;
+}
+.portrait img{filter:url(#knockout) contrast(1.05)}
+.about-inner p{font-size:.9rem;color:#c3b8a9;margin-bottom:.8rem}
+.traits{list-style:none;margin-top:1rem;display:grid;gap:.42rem}
+.traits li{font-family:var(--cond);font-size:.9rem;letter-spacing:.13em;text-transform:uppercase;padding-left:1.1rem;position:relative;color:var(--dim)}
+.traits li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
 
-  /* ---------- Contact ---------- */
-  .contact { padding-bottom: 4rem; }
-  .contact .kicker { margin-bottom: 2rem; }
-  .contact .kicker::after { content: ''; display: block; width: 3rem; height: 1px; background: var(--accent); margin-top: 0.8rem; }
-  .contact h2 {
-    font-family: var(--serif); font-weight: 300;
-    font-size: clamp(2.4rem, 7vw, 6rem); line-height: 1.04; letter-spacing: -0.025em;
-    max-width: 15ch; margin-bottom: 3rem;
-  }
-  .contact h2 em { font-style: italic; color: var(--accent); }
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
-    align-items: start;
-  }
-  @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
-  .contact-note { color: var(--ink-soft); font-size: 0.95rem; max-width: 46ch; }
+.stack{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin-top:1.7rem}
+.tool{
+  border:1px solid var(--line-soft);border-radius:10px;padding:.8rem .5rem;
+  display:grid;place-items:center;min-height:52px;
+  text-align:center;background:rgba(201,162,77,.035);transition:border-color .3s,background .3s;
+}
+.tool:hover{border-color:var(--line);background:rgba(201,162,77,.07)}
+.tool span{font-family:var(--cond);font-size:.84rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;line-height:1.3;transition:color .3s}
+.tool:hover span{color:var(--gold-lit)}
+.testimonial{
+  margin-top:1.2rem;padding:1.2rem 1.3rem;border-radius:12px;
+  background:linear-gradient(160deg,var(--ember),var(--card));
+  border:1px solid var(--line-soft);position:relative;
+}
+.testimonial p{font-size:.9rem;color:#cfc4b4;font-style:italic;padding-left:1.9rem}
+.testimonial::before{
+  content:'\201C';position:absolute;left:1rem;top:.35rem;font-family:Georgia,serif;
+  font-size:2.8rem;color:var(--gold);opacity:.5;line-height:1;
+}
+.testimonial cite{
+  display:block;margin-top:.7rem;padding-left:1.9rem;font-style:normal;
+  font-family:var(--cond);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+}
+@media(max-width:960px){.about-band{grid-template-columns:1fr}.stack{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:420px){.about-inner{grid-template-columns:1fr}.portrait{width:100%;max-width:200px}}
 
-  .enquiry-form { display: grid; gap: 2rem; }
-  .field { display: grid; gap: 0.5rem; }
-  .field label {
-    font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--ink-soft);
-  }
-  .field input, .field textarea {
-    font-family: var(--serif); font-size: 1.25rem; font-weight: 300;
-    color: var(--ink); background: transparent;
-    border: none; border-bottom: 1px solid var(--line);
-    border-radius: 0; padding: 0.4rem 0 0.7rem;
-    transition: border-color .25s;
-  }
-  .field textarea { resize: vertical; min-height: 5.5rem; line-height: 1.5; }
-  .field input:focus, .field textarea:focus { outline: none; border-bottom-color: var(--accent); }
-  .field input::placeholder, .field textarea::placeholder { color: #b3ad9f; font-style: italic; }
+/* ---------- CONTACT ---------- */
+.contact-band{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
+  gap:clamp(1.5rem,4vw,3rem);align-items:start;
+}
+.contact h2{
+  font-family:var(--display);font-size:clamp(2.3rem,6.4vw,4.6rem);
+  line-height:.92;text-transform:uppercase;letter-spacing:-.01em;
+}
+.contact h2 em{font-style:normal;color:var(--gold)}
+.clines{list-style:none;margin-top:1.8rem;display:grid;gap:.95rem}
+.clines li{display:flex;align-items:center;gap:.85rem;font-size:.94rem}
+.clines .ic{
+  width:34px;height:34px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+  border:1px solid var(--line);color:var(--gold);background:rgba(201,162,77,.05);
+}
+.clines a:hover{color:var(--gold)}
+.form{padding:clamp(1.3rem,2.6vw,2rem);border-radius:var(--r);
+  background:linear-gradient(168deg,var(--card) 0%,var(--wine) 100%);
+  border:1px solid var(--line-soft);
+}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.9rem}
+.field label{font-family:var(--cond);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.field input,.field textarea,.field select{
+  font-family:var(--sans);font-size:.94rem;color:var(--cream);
+  background:rgba(0,0,0,.32);border:1px solid var(--line-soft);
+  border-radius:9px;padding:.72rem .85rem;transition:border-color .25s,background .25s;
+  width:100%;
+}
+.field textarea{min-height:118px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{
+  outline:none;border-color:var(--gold);background:rgba(0,0,0,.5);
+}
+.field input::placeholder,.field textarea::placeholder{color:#6f665d}
+.field select option{background:#1c1312;color:var(--cream)}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.send{
+  width:100%;margin-top:.4rem;cursor:pointer;
+  font-family:var(--cond);font-size:1rem;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--gold);color:#120c0b;border:0;border-radius:999px;padding:.9rem 1.4rem;
+  transition:background .25s,transform .2s,opacity .2s;
+}
+.send:hover:not(:disabled){background:var(--gold-lit);transform:translateY(-2px)}
+.send:disabled{opacity:.55;cursor:progress}
+.status{font-size:.86rem;margin-top:.8rem;min-height:1.2em}
+.status.ok{color:#7fd0a0}
+.status.err{color:#e08a70}
+.signoff{
+  margin-top:2.4rem;font-family:var(--cond);font-weight:300;
+  font-size:clamp(1rem,1.7vw,1.35rem);letter-spacing:.3em;text-transform:uppercase;
+  line-height:2;color:var(--gold-lit);
+}
+@media(max-width:900px){.contact-band{grid-template-columns:1fr}.frow{grid-template-columns:1fr}}
 
-  .send-btn {
-    justify-self: start;
-    display: inline-flex; align-items: center; gap: 0.7rem;
-    font-family: var(--mono); font-size: 0.82rem; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--paper); background: var(--ink);
-    border: 1px solid var(--ink); border-radius: 2px;
-    padding: 1rem 1.8rem; cursor: pointer;
-    transition: background .25s, border-color .25s;
-  }
-  .send-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
-  .send-btn:disabled { opacity: 0.55; cursor: wait; }
-  .form-status { font-size: 0.92rem; color: var(--ink-soft); min-height: 1.4em; }
-  .form-status.ok { color: #2c6e49; }
-  .form-status.err { color: var(--accent); }
-  .contact-alt { margin-top: 2rem; font-size: 0.85rem; color: var(--ink-soft); }
-  .contact-alt a { color: var(--ink); }
-  .contact-alt a:hover { color: var(--accent); }
-  .hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+/* ---------- FOOTER ---------- */
+footer{
+  border-top:1px solid var(--line-soft);padding:2rem var(--pad);
+  display:flex;justify-content:space-between;align-items:center;gap:1.2rem;flex-wrap:wrap;
+}
+footer .fcol{display:flex;flex-direction:column;gap:.3rem}
+footer a:hover{color:var(--gold)}
+footer .soc{display:flex;gap:1.3rem}
 
-  /* ---------- Footer ---------- */
-  footer {
-    border-top: 1px solid var(--ink);
-    padding: 2rem 4vw 2.5rem;
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
-  }
-  footer .col { display: flex; flex-direction: column; gap: 0.4rem; }
-  footer a { text-decoration: none; font-size: 0.86rem; color: var(--ink-soft); transition: color .2s; }
-  footer a:hover { color: var(--accent); }
-  footer .fm { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); }
-  footer .label { font-size: 0.68rem; }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-    .fade, .reveal { opacity: 1; transform: none; }
-  }
+/* ---------- reveal on scroll ---------- */
+.js-reveal .rv{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+.js-reveal .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js-reveal .rv{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
+<div class="shell">
 
-  <nav id="nav">
-    <a class="wordmark" href="#top">Allrounder<sup>®</sup></a>
-    <div class="nav-right">
-      <a href="#services">Services</a>
-      <a href="#approach">Approach</a>
-      <a href="#studio">Studio</a>
-      <a href="#contact" class="talk">Start a project</a>
-    </div>
-  </nav>
+<!-- Turns the logo JPEG's black field transparent: alpha = luminance, then steepened. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="knockout" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="1 0 0 0 0
+                                         0 1 0 0 0
+                                         0 0 1 0 0
+                                         .42 .72 .28 0 0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="3.4" intercept="-.16"/></feComponentTransfer>
+  </filter>
+</svg>
 
-  <header id="top">
-    <div class="hero-meta">
-      <span class="label fade d1">Full-service marketing studio</span>
-      <span class="label fade d1">Canada — <span id="localtime">—:—</span></span>
-    </div>
-    <h1 class="fade d2">The whole brand, <em>one</em> studio.</h1>
-    <div class="hero-row fade d3">
-      <p class="hero-sub">Web, e-commerce, search, social, content and events — planned and executed by one team that sees the full picture, so nothing gets lost between agencies.</p>
-      <a href="#contact" class="hero-cta">Start a project <span class="arr">→</span></a>
-    </div>
-  </header>
+<!-- ============================ NAV ============================ -->
+<nav id="nav">
+  <a class="brand" href="#top">
+    <img src="assets/allrounder-mark.jpg" alt="Allrounder Marketing monogram">
+    <span class="wm">Allrounder<span>Marketing</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#campaigns">Campaigns</a>
+    <a href="#engagements">Engagements</a>
+    <a href="#studio">Studio</a>
+  </div>
+  <a class="nav-cta" href="#contact">Book a call</a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu"><span></span></button>
+</nav>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span>Web &amp; E-commerce <span class="sep">·</span></span>
-      <span>SEO &amp; Search <span class="sep">·</span></span>
-      <span>Social Media <span class="sep">·</span></span>
-      <span>Paid Campaigns <span class="sep">·</span></span>
-      <span>Content &amp; Production <span class="sep">·</span></span>
-      <span>Events &amp; Wholesale <span class="sep">·</span></span>
-      <span>Web &amp; E-commerce <span class="sep">·</span></span>
-      <span>SEO &amp; Search <span class="sep">·</span></span>
-      <span>Social Media <span class="sep">·</span></span>
-      <span>Paid Campaigns <span class="sep">·</span></span>
-      <span>Content &amp; Production <span class="sep">·</span></span>
-      <span>Events &amp; Wholesale <span class="sep">·</span></span>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#process">Process</a>
+  <a href="#campaigns">Campaigns</a>
+  <a href="#engagements">Engagements</a>
+  <a href="#studio">Studio</a>
+  <a href="#contact" style="color:var(--gold)">Book a call</a>
+</div>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero" id="top">
+  <div class="hero-bar">
+    <span class="eyebrow">Marketing Consulting Studio</span>
+    <span class="eyebrow">Canada &middot; Working with brands worldwide</span>
+  </div>
+
+  <p class="mega">CAMPAIGNS</p>
+
+  <div class="stage">
+    <div class="spot" aria-hidden="true"></div>
+
+    <svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+      <defs><path id="sealPath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+      <text><textPath href="#sealPath" startOffset="0">STRATEGY &#183; GROWTH &#183; RESULTS &#183; STRATEGY &#183; GROWTH &#183; RESULTS &#183; </textPath></text>
+      <path d="M60 44 L63 57 L76 60 L63 63 L60 76 L57 63 L44 60 L57 57 Z" fill="#c9a24d" opacity=".9"/>
+    </svg>
+
+    <div class="mark-wrap">
+      <img src="assets/allrounder-logo.jpg" alt="Allrounder Marketing — strategy, growth, results" width="560" height="560" fetchpriority="high">
     </div>
   </div>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="sec-top reveal">
-      <h2>What we take off your plate</h2>
-      <span class="label">Services — six disciplines</span>
+  <div class="hero-grid">
+    <div class="pillars-stack">
+      <h2>Plan /<br>Build /<br>Grow</h2>
+      <p class="sub">
+        Brand &amp; positioning<br>
+        Campaigns &amp; media<br>
+        Growth consulting
+      </p>
+      <div class="quote">
+        <p>We don't sell activity. We build the plan that makes a product sell itself.</p>
+        <p class="sig">Allrounder</p>
+      </div>
     </div>
 
-    <div class="svc-row reveal">
-      <button class="svc-head" aria-expanded="false">
-        <span class="no">01</span>
-        <h3>Web &amp; E-commerce</h3>
-        <span class="plus">+</span>
-      </button>
-      <div class="svc-body">
-        <div class="svc-body-inner">
-          <span></span>
-          <div>
-            <p>Stores and sites built to sell, not just to look good in a portfolio. Shopify builds, product pages and checkout flows designed around how your customers actually buy.</p>
-            <div class="svc-tags"><span>Shopify</span><span>Store setup</span><span>Landing pages</span><span>Conversion design</span></div>
-          </div>
+    <div>
+      <h1 class="hero-name">Marketing<br>Consulting &amp;<br>Campaign Planning</h1>
+      <p class="hero-role">For product-led businesses</p>
+      <p class="hero-copy">
+        We're a consulting studio that plans and runs the marketing behind a product — the
+        positioning, the channels, the budget, the calendar and the numbers that prove it worked.
+        One team, one plan, from first audit to campaign launch.
+      </p>
+      <hr class="hr-gold">
+      <div class="pillar-row">
+        <div class="pillar">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
+          <b>Strategy</b>
+          <span>Positioning, audience &amp; message</span>
+        </div>
+        <div class="pillar">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 4 4 6-8"/><path d="M15 7h4v4"/></svg></span>
+          <b>Growth</b>
+          <span>Channels, budget &amp; scale</span>
+        </div>
+        <div class="pillar">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.6L20 9.8l-4.2 4 1.1 5.9L12 16.9 7.1 19.7l1.1-5.9L4 9.8l5.6-1.2z"/></svg></span>
+          <b>Results</b>
+          <span>Reporting you can act on</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ TICKER ============================ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickTrack">
+    <span>Brand Strategy<i>&#9670;</i>Campaign Planning<i>&#9670;</i>Product Launches<i>&#9670;</i>Paid Media<i>&#9670;</i>SEO &amp; Content<i>&#9670;</i>Social &amp; Creator<i>&#9670;</i>E-commerce Growth<i>&#9670;</i>Analytics &amp; Reporting<i>&#9670;</i></span>
+  </div>
+</div>
+
+<!-- ============================ SERVICES ============================ -->
+<section id="services">
+  <div class="sec-top">
+    <div>
+      <h2 class="sec-head">What we do</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="lede">Five disciplines, run by one team. Take the whole engine or the single piece that's holding growth back.</p>
+  </div>
+
+  <div class="svc-grid">
+    <article class="svc rv">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></span>
+      <h3>Brand Strategy</h3>
+      <p>Positioning, category, audience and message. What you stand for, said in a way the market repeats.</p>
+    </article>
+    <article class="svc rv">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3M8 17h6"/></svg></span>
+      <h3>Campaign Planning</h3>
+      <p>The full plan: channel mix, budget split, calendar, creative brief and the KPI each stage answers to.</p>
+    </article>
+    <article class="svc rv">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v4.5l3 2"/><path d="M12 3.5v1M12 19.5v1M3.5 12h1M19.5 12h1"/></svg></span>
+      <h3>Performance Media</h3>
+      <p>Meta, Google, TikTok and retail search — built, launched and paced against a target cost per outcome.</p>
+    </article>
+    <article class="svc rv">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H4z"/><path d="M4 16l5-5 3 3 3-4 5 6"/><circle cx="9" cy="9" r="1.3"/><path d="M8 20h8"/></svg></span>
+      <h3>Content &amp; Creative</h3>
+      <p>Product photography, short-form video, ad creative and copy — produced to feed the plan, not to fill a feed.</p>
+    </article>
+    <article class="svc rv">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9M10 20V4M16 20v-7M22 20H2"/></svg></span>
+      <h3>Growth Consulting</h3>
+      <p>Tracking, dashboards and a monthly read on what to double down on, what to cut, and what to test next.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ==================== PROCESS + CAMPAIGN BLUEPRINTS ==================== -->
+<section id="process" style="padding-top:0">
+  <div class="band">
+
+    <!-- PROCESS -->
+    <div class="block rv">
+      <h2 class="sec-head">How we work</h2>
+      <div class="rule"></div>
+      <div class="steps">
+        <div class="step">
+          <span class="no">01</span>
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></span>
+          <div><h4>Discover</h4><p>Audit the brand, the market, the competitors and the numbers you already have.</p></div>
+        </div>
+        <div class="step">
+          <span class="no">02</span>
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span>
+          <div><h4>Define</h4><p>Positioning, ideal customer, core message and the KPIs the work will be judged on.</p></div>
+        </div>
+        <div class="step">
+          <span class="no">03</span>
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l3-1 12-12-2-2L4 18z"/><path d="M15 5l4 4"/></svg></span>
+          <div><h4>Design</h4><p>Build the campaign: channels, budget split, calendar, creative concepts and offers.</p></div>
+        </div>
+        <div class="step">
+          <span class="no">04</span>
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l4 4c4-1 9-6 10-14C11 6 6 11 5 15z"/><path d="M8.5 18.5L6 21"/></svg></span>
+          <div><h4>Deploy</h4><p>Launch across every channel, produce the creative, and pace spend week by week.</p></div>
+        </div>
+        <div class="step">
+          <span class="no">05</span>
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V8M10 18v-6M16 18v-9M4 21h16"/></svg></span>
+          <div><h4>Deliver</h4><p>Measure, report in plain language, cut what fails and scale what earns its budget.</p></div>
         </div>
       </div>
     </div>
 
-    <div class="svc-row reveal">
-      <button class="svc-head" aria-expanded="false">
-        <span class="no">02</span>
-        <h3>SEO &amp; Search</h3>
-        <span class="plus">+</span>
-      </button>
-      <div class="svc-body">
-        <div class="svc-body-inner">
-          <span></span>
-          <div>
-            <p>Get found by people already looking for what you sell. Keyword strategy, on-page work, Google Business setup and the technical fixes that actually move rankings.</p>
-            <div class="svc-tags"><span>Keyword strategy</span><span>On-page SEO</span><span>Google Business</span><span>Analytics</span></div>
+    <!-- CAMPAIGN BLUEPRINTS -->
+    <div class="block rv" id="campaigns">
+      <div class="sec-top" style="margin-bottom:0">
+        <div>
+          <h2 class="sec-head">Campaign blueprints</h2>
+          <div class="rule"></div>
+        </div>
+        <a class="eyebrow" href="#contact" style="color:var(--gold)">Request a plan &rarr;</a>
+      </div>
+
+      <div class="work-grid">
+        <article class="work">
+          <div class="art">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2d1410"/><stop offset="1" stop-color="#7d2a19"/></linearGradient></defs>
+              <rect width="320" height="200" fill="url(#g1)"/>
+              <circle cx="232" cy="66" r="46" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".55"/>
+              <circle cx="232" cy="66" r="28" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".35"/>
+              <path d="M20 168 L86 120 L140 142 L206 74 L288 36" fill="none" stroke="#e8caa0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M262 40 h26 v26" fill="none" stroke="#e8caa0" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
           </div>
+          <div class="meta">
+            <h4>Product Launch</h4><span>0 &rarr; first 1,000 customers</span>
+            <p>Pre-launch list, launch week creative, paid rollout and a 90-day follow-through plan.</p>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="art">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c1312"/><stop offset="1" stop-color="#4a2016"/></linearGradient></defs>
+              <rect width="320" height="200" fill="url(#g2)"/>
+              <g fill="#c9a24d" opacity=".85">
+                <rect x="36" y="120" width="26" height="48" rx="3"/><rect x="76" y="98" width="26" height="70" rx="3"/>
+                <rect x="116" y="76" width="26" height="92" rx="3"/><rect x="156" y="58" width="26" height="110" rx="3"/>
+              </g>
+              <g fill="#e8caa0" opacity=".35">
+                <rect x="196" y="44" width="26" height="124" rx="3"/><rect x="236" y="28" width="26" height="140" rx="3"/>
+              </g>
+              <path d="M28 44 h80" stroke="#e8caa0" stroke-width="2" opacity=".6"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h4>D2C &amp; E-commerce</h4><span>Scale what already sells</span>
+            <p>Offer architecture, paid social, email and retention built around contribution margin.</p>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="art">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><radialGradient id="g3" cx="50%" cy="45%"><stop offset="0" stop-color="#8c2a1c"/><stop offset="1" stop-color="#150e0d"/></radialGradient></defs>
+              <rect width="320" height="200" fill="url(#g3)"/>
+              <g fill="none" stroke="#e8caa0" stroke-width="1.6" opacity=".75">
+                <path d="M160 44 c-24 26 -24 66 0 92 c24 -26 24 -66 0 -92z"/>
+                <ellipse cx="160" cy="90" rx="46" ry="26"/>
+                <circle cx="160" cy="90" r="46"/>
+              </g>
+              <circle cx="160" cy="90" r="5" fill="#c9a24d"/>
+              <path d="M40 168h240" stroke="#c9a24d" stroke-width="1" opacity=".4"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h4>Local &amp; Retail</h4><span>Own the map, then the region</span>
+            <p>Local SEO, review engine, geo-targeted paid and in-store events that fill a calendar.</p>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="art">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#241715"/><stop offset="1" stop-color="#5e2417"/></linearGradient></defs>
+              <rect width="320" height="200" fill="url(#g4)"/>
+              <g fill="none" stroke="#c9a24d" stroke-width="1.4" opacity=".8">
+                <path d="M60 150 V70 h60 V150"/><path d="M120 110 h60 V150"/><path d="M180 88 h60 V150"/>
+                <path d="M44 150 h232"/>
+              </g>
+              <g fill="#e8caa0" opacity=".55">
+                <circle cx="90" cy="56" r="4"/><circle cx="150" cy="96" r="4"/><circle cx="210" cy="74" r="4"/>
+              </g>
+            </svg>
+          </div>
+          <div class="meta">
+            <h4>B2B Demand Gen</h4><span>Longer cycles, bigger deals</span>
+            <p>ICP mapping, content engine, LinkedIn and search, plus a lead flow sales will actually work.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ENGAGEMENTS ============================ -->
+<section id="engagements">
+  <div class="sec-top">
+    <div>
+      <h2 class="sec-head">How to work with us</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="lede">Three ways in — from a short advisory sprint to a team that owns the whole growth function.</p>
+  </div>
+
+  <div class="eng-grid">
+    <article class="eng rv">
+      <h3>Advisory Sprint</h3>
+      <p class="for">2&ndash;3 weeks &middot; Fixed scope</p>
+      <p>A fast, senior read on where the marketing is leaking — and exactly what to do about it.</p>
+      <ul>
+        <li>Brand, market and competitor audit</li>
+        <li>Channel and spend review</li>
+        <li>Positioning and message directions</li>
+        <li>Prioritised 90-day action list</li>
+      </ul>
+      <a class="go" href="#contact">Start a sprint <span>&rarr;</span></a>
+    </article>
+
+    <article class="eng feature rv">
+      <span class="tag">Most requested</span>
+      <h3>Campaign Build</h3>
+      <p class="for">6&ndash;12 weeks &middot; Plan + launch</p>
+      <p>The complete campaign, from strategy through to live in every channel that matters.</p>
+      <ul>
+        <li>Full campaign plan and calendar</li>
+        <li>Budget split by channel and stage</li>
+        <li>Creative concepts and production</li>
+        <li>Launch, tracking setup and reporting</li>
+      </ul>
+      <a class="go" href="#contact">Plan a campaign <span>&rarr;</span></a>
+    </article>
+
+    <article class="eng rv">
+      <h3>Growth Partner</h3>
+      <p class="for">Monthly retainer &middot; Ongoing</p>
+      <p>We become the marketing team — planning, running and reporting month after month.</p>
+      <ul>
+        <li>Always-on channel management</li>
+        <li>Rolling content and creative</li>
+        <li>Monthly plan, review and forecast</li>
+        <li>Direct line to the founder</li>
+      </ul>
+      <a class="go" href="#contact">Talk retainer <span>&rarr;</span></a>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ STUDIO ============================ -->
+<section id="studio" style="padding-top:0">
+  <div class="about-band">
+
+    <div class="block rv">
+      <h2 class="sec-head">The studio</h2>
+      <div class="rule"></div>
+      <div class="about-inner">
+        <div class="portrait"><img src="assets/allrounder-mark.jpg" alt="Allrounder Marketing monogram"></div>
+        <div>
+          <p>Allrounder started from a simple observation: a growing business shouldn't need five agencies to tell one story. The positioning, the ads, the content and the numbers all belong to the same plan.</p>
+          <p>Every engagement is run personally — honest advice, direct communication, and work measured on one thing: whether it moved the business forward.</p>
+          <ul class="traits">
+            <li>Senior, hands-on</li>
+            <li>Plan before spend</li>
+            <li>Numbers in plain English</li>
+            <li>Replies within a day</li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <div class="svc-row reveal">
-      <button class="svc-head" aria-expanded="false">
-        <span class="no">03</span>
-        <h3>Social Media</h3>
-        <span class="plus">+</span>
-      </button>
-      <div class="svc-body">
-        <div class="svc-body-inner">
-          <span></span>
-          <div>
-            <p>A consistent, on-brand feed without you having to think about it. Content planning, design, captions and a posting rhythm that compounds over months, not days.</p>
-            <div class="svc-tags"><span>Content calendar</span><span>Design</span><span>Captions</span><span>Community</span></div>
-          </div>
-        </div>
+    <div class="block rv">
+      <h2 class="sec-head">The stack we run</h2>
+      <div class="rule"></div>
+      <div class="stack">
+        <div class="tool"><span>Meta Ads</span></div>
+        <div class="tool"><span>Google Ads</span></div>
+        <div class="tool"><span>GA4</span></div>
+        <div class="tool"><span>Shopify</span></div>
+        <div class="tool"><span>Klaviyo</span></div>
+        <div class="tool"><span>TikTok Ads</span></div>
+        <div class="tool"><span>Semrush</span></div>
+        <div class="tool"><span>HubSpot</span></div>
+        <div class="tool"><span>LinkedIn</span></div>
+        <div class="tool"><span>Looker</span></div>
       </div>
+
+      <div class="testimonial">
+        <p>Placeholder for a client quote — swap this line for a real testimonial once you have one you can attribute.</p>
+        <cite>&mdash; Client name, Company</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section id="contact" class="contact">
+  <div class="contact-band">
+    <div class="rv">
+      <p class="kicker">New business &mdash; replies within a day</p>
+      <h2 style="margin-top:.7rem">Let's plan the <em>campaign</em>.</h2>
+      <p class="lede" style="margin-top:1.1rem">
+        Tell us what you sell and where you want it to go. You'll get honest, useful next steps
+        &mdash; no pitch deck, no filler.
+      </p>
+
+      <ul class="clines">
+        <li>
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg></span>
+          <a href="mailto:mikeallrounder33@gmail.com">mikeallrounder33@gmail.com</a>
+        </li>
+        <li>
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 10-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <span>Canada &mdash; working with brands worldwide</span>
+        </li>
+        <li>
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 6.8V12l3.4 2.2"/></svg></span>
+          <span>Local time <b id="localtime">—</b> &middot; reply within one business day</span>
+        </li>
+      </ul>
+
+      <p class="signoff">Planning<br>Campaigns.<br>Building Brands.</p>
     </div>
 
-    <div class="svc-row reveal">
-      <button class="svc-head" aria-expanded="false">
-        <span class="no">04</span>
-        <h3>Paid &amp; Digital Campaigns</h3>
-        <span class="plus">+</span>
-      </button>
-      <div class="svc-body">
-        <div class="svc-body-inner">
-          <span></span>
-          <div>
-            <p>Budgets put to work with a clear line from spend to result. Paid ads, funnels and lead generation — reported honestly, adjusted quickly.</p>
-            <div class="svc-tags"><span>Paid ads</span><span>Funnels</span><span>Lead generation</span><span>Reporting</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <form class="form rv" id="enquiryForm" action="https://formsubmit.co/mikeallrounder33@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New enquiry — Allrounder Marketing">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-    <div class="svc-row reveal">
-      <button class="svc-head" aria-expanded="false">
-        <span class="no">05</span>
-        <h3>Content &amp; Production</h3>
-        <span class="plus">+</span>
-      </button>
-      <div class="svc-body">
-        <div class="svc-body-inner">
-          <span></span>
-          <div>
-            <p>Product shoots, short-form video and creative direction that make the brand look the way it deserves to — premium, consistent, recognisable.</p>
-            <div class="svc-tags"><span>Product shoots</span><span>Short-form video</span><span>Creative direction</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="svc-row reveal">
-      <button class="svc-head" aria-expanded="false">
-        <span class="no">06</span>
-        <h3>Events &amp; Wholesale</h3>
-        <span class="plus">+</span>
-      </button>
-      <div class="svc-body">
-        <div class="svc-body-inner">
-          <span></span>
-          <div>
-            <p>Launches, activations and wholesale positioning handled end to end — promotion, logistics and follow-through that get your brand into the right rooms.</p>
-            <div class="svc-tags"><span>Event handling</span><span>Promotion</span><span>Wholesale strategy</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- APPROACH -->
-  <section class="approach" id="approach">
-    <div class="sec-top reveal">
-      <h2>How a project runs</h2>
-      <span class="label">Approach — four stages</span>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><span class="no">Stage 01</span><h4>Listen</h4><p>Your goals, your market, your customers. We start from your business — never from a template.</p></div>
-      <div class="step reveal"><span class="no">Stage 02</span><h4>Plan</h4><p>A focused roadmap in plain language: what we'll do, in what order, and what it should return.</p></div>
-      <div class="step reveal"><span class="no">Stage 03</span><h4>Build</h4><p>Design, content and setup executed properly and on schedule. You see progress, not black boxes.</p></div>
-      <div class="step reveal"><span class="no">Stage 04</span><h4>Grow</h4><p>We measure what works, cut what doesn't, and keep pushing the numbers in the right direction.</p></div>
-    </div>
-  </section>
-
-  <!-- STUDIO -->
-  <section class="about" id="studio">
-    <p class="big-quote reveal">We don't sell marketing. We build the systems that make a business <em>grow</em> — and stand behind every result.</p>
-    <div class="about-cols">
-      <div class="reveal">
-        <p>Allrounder started with a simple observation: growing businesses shouldn't have to juggle five agencies. The store, the search rankings, the social feed and the launch event are all one story — and they work best when one team tells it.</p>
-        <p>Every project here is handled personally. That means honest advice, direct communication, and work judged by a single measure: whether it moved your business forward.</p>
-        <p class="sig">— Mike, Founder</p>
-      </div>
-      <div class="facts reveal">
-        <div class="fact"><span class="k">Studio</span><span class="v">Allrounder Marketing</span></div>
-        <div class="fact"><span class="k">Base</span><span class="v">Canada</span></div>
-        <div class="fact"><span class="k">Model</span><span class="v">Full-service, one team</span></div>
-        <div class="fact"><span class="k">Contact</span><span class="v">Direct with the founder</span></div>
-        <div class="fact"><span class="k">Reply time</span><span class="v">Within one business day</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <p class="label kicker reveal">New business — replies within a day</p>
-    <h2 class="reveal">Tell us where the brand <em>should</em> be.</h2>
-    <div class="contact-grid reveal">
-      <div>
-        <p class="contact-note">A few lines about your business and where you want it to go is plenty. Your message lands directly in the founder's inbox — you'll get honest, useful next steps within a day. No pressure, no filler.</p>
-        <p class="contact-alt">Prefer your own email app? <a href="mailto:mikeallrounder33@gmail.com?subject=Project%20Enquiry%20—%20Allrounder">Write to us directly →</a></p>
-      </div>
-      <form class="enquiry-form" id="enquiryForm" action="https://formsubmit.co/mikeallrounder33@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New enquiry — Allrounder website">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="frow">
         <div class="field">
           <label for="f-name">Your name</label>
           <input id="f-name" type="text" name="name" placeholder="Jane Doe" required autocomplete="name">
         </div>
         <div class="field">
-          <label for="f-email">Your email</label>
+          <label for="f-company">Company</label>
+          <input id="f-company" type="text" name="company" placeholder="Company or brand" autocomplete="organization">
+        </div>
+      </div>
+
+      <div class="frow">
+        <div class="field">
+          <label for="f-email">Email</label>
           <input id="f-email" type="email" name="email" placeholder="jane@company.com" required autocomplete="email">
         </div>
         <div class="field">
-          <label for="f-msg">About the project</label>
-          <textarea id="f-msg" name="message" placeholder="What you do, and where you want the brand to go…" required></textarea>
+          <label for="f-type">What you need</label>
+          <select id="f-type" name="engagement">
+            <option>Advisory Sprint</option>
+            <option selected>Campaign Build</option>
+            <option>Growth Partner (retainer)</option>
+            <option>Not sure yet</option>
+          </select>
         </div>
-        <button class="send-btn" id="sendBtn" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </section>
+      </div>
 
-  <footer>
-    <div class="col">
-      <span class="fm">Allrounder<sup style="font-family:var(--mono);font-size:0.5em;color:var(--accent);">®</sup></span>
-      <span class="label">Full-service marketing studio — Canada</span>
-    </div>
-    <div class="col">
-      <a href="#" rel="noopener">Instagram</a>
-      <a href="#" rel="noopener">Facebook</a>
-      <a href="#" rel="noopener">LinkedIn</a>
-    </div>
-    <div class="col">
-      <a href="mailto:mikeallrounder33@gmail.com">mikeallrounder33@gmail.com</a>
-      <span class="label">© 2026 Allrounder Marketing</span>
-    </div>
-  </footer>
+      <div class="field">
+        <label for="f-msg">About the product &amp; the goal</label>
+        <textarea id="f-msg" name="message" placeholder="What you sell, who buys it, and where you want it in 12 months…" required></textarea>
+      </div>
+
+      <button class="send" id="sendBtn" type="submit">Send enquiry &rarr;</button>
+      <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="fcol">
+    <span class="wm" style="font-weight:300;letter-spacing:.24em;text-transform:uppercase;font-size:.9rem">Allrounder Marketing</span>
+    <span class="eyebrow">Strategy &middot; Growth &middot; Results</span>
+  </div>
+  <div class="soc">
+    <a class="eyebrow" href="#" rel="noopener">Instagram</a>
+    <a class="eyebrow" href="#" rel="noopener">LinkedIn</a>
+    <a class="eyebrow" href="#" rel="noopener">Facebook</a>
+  </div>
+  <div class="fcol" style="text-align:right">
+    <a href="mailto:mikeallrounder33@gmail.com">mikeallrounder33@gmail.com</a>
+    <span class="eyebrow">&copy; <span id="yr">2026</span> Allrounder Marketing</span>
+  </div>
+</footer>
+
+</div><!-- /shell -->
 
 <script>
-  // sticky nav
-  const nav = document.getElementById('nav');
-  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30), { passive: true });
+// sticky nav
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30), { passive: true });
 
-  // local time (human detail in the hero)
-  const lt = document.getElementById('localtime');
-  const tick = () => {
-    lt.textContent = new Intl.DateTimeFormat('en-CA', {
-      hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Toronto'
-    }).format(new Date()) + ' ET';
-  };
-  tick(); setInterval(tick, 30000);
+// mobile menu
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const setMenu = open => {
+  mobileMenu.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+};
+menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+mobileMenu.addEventListener('click', e => { if (e.target.tagName === 'A') setMenu(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
-  // scroll reveal
+// year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// local time
+const lt = document.getElementById('localtime');
+const tick = () => {
+  lt.textContent = new Intl.DateTimeFormat('en-CA', {
+    hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Toronto'
+  }).format(new Date()) + ' ET';
+};
+tick(); setInterval(tick, 30000);
+
+// seamless ticker — duplicate the strip so the -50% loop has no gap
+const track = document.getElementById('tickTrack');
+track.appendChild(track.firstElementChild.cloneNode(true));
+
+// scroll reveal — progressive enhancement, never a way for content to go missing
+const rv = document.querySelectorAll('.rv');
+const showAll = () => rv.forEach(el => el.classList.add('in'));
+if ('IntersectionObserver' in window) {
+  document.documentElement.classList.add('js-reveal');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px' });
+  rv.forEach((el, i) => {
+    el.style.transitionDelay = (i % 5) * 60 + 'ms';
+    io.observe(el);
+  });
+  // safety net: if the observer never reports (background tab, odd embed), show everything
+  setTimeout(showAll, 4000);
+}
 
-  // service accordions
-  document.querySelectorAll('.svc-row').forEach(row => {
-    const head = row.querySelector('.svc-head');
-    const body = row.querySelector('.svc-body');
-    head.addEventListener('click', () => {
-      const open = row.classList.toggle('open');
-      head.setAttribute('aria-expanded', open);
-      body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+// enquiry form — posts in place via FormSubmit, no mail client needed
+const form = document.getElementById('enquiryForm');
+const sendBtn = document.getElementById('sendBtn');
+const status = document.getElementById('formStatus');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (form.querySelector('.hp').value) return; // honeypot tripped
+  sendBtn.disabled = true;
+  status.className = 'status';
+  status.textContent = 'Sending…';
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/mikeallrounder33@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
     });
-  });
-
-  // enquiry form — submits in place via FormSubmit, no email client needed
-  const form = document.getElementById('enquiryForm');
-  const sendBtn = document.getElementById('sendBtn');
-  const status = document.getElementById('formStatus');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (form.querySelector('.hp').value) return; // honeypot tripped
-    sendBtn.disabled = true;
-    status.className = 'form-status';
-    status.textContent = 'Sending…';
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/mikeallrounder33@gmail.com', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      });
-      if (!res.ok) throw new Error('Request failed');
-      form.reset();
-      status.className = 'form-status ok';
-      status.textContent = 'Sent — thank you. You’ll hear back within a day.';
-    } catch (err) {
-      status.className = 'form-status err';
-      status.textContent = 'Something went wrong. Please try again, or email mikeallrounder33@gmail.com directly.';
-    }
-    sendBtn.disabled = false;
-  });
+    if (!res.ok) throw new Error('Request failed');
+    form.reset();
+    status.className = 'status ok';
+    status.textContent = 'Sent — thank you. You’ll hear back within a day.';
+  } catch (err) {
+    status.className = 'status err';
+    status.textContent = 'Something went wrong. Please email mikeallrounder33@gmail.com directly.';
+  }
+  sendBtn.disabled = false;
+});
 </script>
 </body>
 </html>

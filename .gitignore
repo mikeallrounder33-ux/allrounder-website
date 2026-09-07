@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# ---------------------------------------------------------------------------
+# The CELPIP trainer is a SEPARATE project. It lives in its own repository:
+#   ~/Claude/celpip-trainer   →   github.com/mikeallrounder33-ux/celpip-trainer
+# The copies below are leftovers from where it was first built. They are
+# ignored here so they can never be committed into the Allrounder Marketing
+# site by accident. Once you are happy, they can simply be deleted.
+# ---------------------------------------------------------------------------
+celpip-src/
+celpip-trainer.html
+CELPIP-README.md
+NOTICE.md
+LICENSE
+worker/
+
+# large local assets, not part of the site
+Untitled.pdf
+
+# local backup of the previous (light "paper") homepage design
+.archive-index-paper.html
