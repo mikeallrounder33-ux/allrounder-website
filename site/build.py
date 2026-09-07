@@ -29,11 +29,11 @@ NAV = [
 ]
 
 SERVICES = [
-    ("Brand Strategy", "services/brand-strategy.html", "brand-strategy"),
+    ("Growth Audit", "services/growth-audit.html", "growth-audit"),
+    ("Brand & Positioning", "services/brand-positioning.html", "brand-positioning"),
     ("Campaign Planning", "services/campaign-planning.html", "campaign-planning"),
-    ("Performance Media", "services/performance-media.html", "performance-media"),
-    ("Content & Creative", "services/content-creative.html", "content-creative"),
-    ("Growth Consulting", "services/growth-consulting.html", "growth-consulting"),
+    ("Channel & Media Planning", "services/channel-media-planning.html", "channel-media-planning"),
+    ("Content & Social Planning", "services/content-social-planning.html", "content-social-planning"),
 ]
 
 
