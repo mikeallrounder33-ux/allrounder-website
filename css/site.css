@@ -382,10 +382,10 @@ section{padding:clamp(3.2rem,7vw,6rem) var(--pad)}
 .traits li{font-family:var(--cond);font-size:.9rem;letter-spacing:.13em;text-transform:uppercase;padding-left:1.1rem;position:relative;color:var(--dim)}
 .traits li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
 
-.stack{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin-top:1.7rem}
+.stack{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin-top:1.7rem}
 .tool{
   border:1px solid var(--line-soft);border-radius:10px;padding:.8rem .5rem;
-  display:grid;place-items:center;min-height:52px;
+  display:grid;place-items:center;min-height:68px;
   text-align:center;background:rgba(201,162,77,.035);transition:border-color .3s,background .3s;
 }
 .tool:hover{border-color:var(--line);background:rgba(201,162,77,.07)}
