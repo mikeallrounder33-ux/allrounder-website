@@ -30,6 +30,15 @@ That regenerates every page with the same nav, footer and `<head>`, plus
 Changing the nav, the footer or anything in `<head>` means editing
 `site/build.py` once, rather than every page.
 
+## Going live
+
+The site is deployed and reachable, but `DRAFT = True` in `site/build.py`
+puts `noindex` on every page and tells crawlers to stay out. It is visible
+to anyone you send the link to; it will not turn up in search.
+
+When the checklist below is done, set `DRAFT = False`, rebuild, commit and
+push. That is the actual moment of publishing.
+
 ## Before going live
 
 - [ ] Fill in every `[placeholder]` on **privacy.html** and **terms.html** —

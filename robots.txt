@@ -1,5 +1,2 @@
 User-agent: *
-Allow: /
-Disallow: /site/
-
-Sitemap: https://mikeallrounder33-ux.github.io/allrounder-website/sitemap.xml
+Disallow: /

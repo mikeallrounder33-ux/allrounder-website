@@ -177,6 +177,13 @@ SHELL = """<!DOCTYPE html>
 # one is live, then rebuild, or search engines index the wrong host.
 ORIGIN = "https://mikeallrounder33-ux.github.io/allrounder-website"
 
+# DRAFT MODE.
+# True  = the site stays reachable by link, but tells search engines not to
+#         index it. Use this until the legal placeholders are filled in.
+# False = open for indexing. Flip this, run the build, commit and push when
+#         the site is genuinely ready to be found.
+DRAFT = True
+
 
 def build():
     fragments = sorted(PAGES.rglob("*.html"))
@@ -199,7 +206,10 @@ def build():
                 origin=ORIGIN,
                 site_name=SITE_NAME,
                 base=base,
-                robots='<meta name="robots" content="noindex">\n' if meta.get("noindex") else "",
+                robots=(
+                    '<meta name="robots" content="noindex, nofollow">\n'
+                    if DRAFT or meta.get("noindex") else ""
+                ),
                 nav=nav_html(base, meta.get("nav", "")),
                 footer=footer_html(base),
                 content=content.rstrip(),
@@ -219,6 +229,9 @@ def build():
         f"{urls}\n</urlset>\n"
     )
     (ROOT / "robots.txt").write_text(
+        # Draft: ask crawlers to stay away entirely until the site is finished.
+        "User-agent: *\nDisallow: /\n"
+        if DRAFT else
         "User-agent: *\n"
         "Allow: /\n"
         "Disallow: /site/\n"   # unwrapped source fragments, not real pages
@@ -226,6 +239,9 @@ def build():
     )
 
     print(f"built {len(written)} pages + sitemap.xml + robots.txt")
+    if DRAFT:
+        print("  DRAFT MODE: every page carries noindex and robots.txt "
+              "disallows all. Set DRAFT = False to open it up.")
     for p in written:
         print("  ", p)
 
